@@ -28,5 +28,5 @@ int main() {
 		}
 	}
 
-	else printf("chepuh normalno vvodi da ezhzhi");
+	else printf("uncorrect source data");
 }
