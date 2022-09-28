@@ -1,0 +1,54 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+/* найти минимальный элмент в области, область - КВАДРАТ 4x4*/
+
+int oblast(int A[10][10], int N, int M);
+
+int main() {
+	int A[10][10];
+	int N, M;
+	int number = 0;
+	do {
+		printf("vvedite N and M cherez probel\n");
+		scanf_s("%d %d", &N, &M);
+	} while (N * M > 100);
+	printf("vvedite elementi massiva\n");
+	for (int x = 0; x < N; x++) {
+		for (int y = 0; y < M; y++) {
+			scanf("%d", &A[x][y]);
+		}
+	}
+	int c = 0;
+	for (int x = 0; x < N; x++) {
+		for (int y = 0; y < M; y++) {
+			int min = oblast(A, N, M);
+			printf("%d %d %d %d\n", c, x, y, min);
+			c++;
+		}
+	}
+
+}
+
+int oblast(int A[10][10], int N, int M) {
+	int B[16], min = 99999999, c1 = 0, c2 = 0;
+	int tmp = 0;
+	for(int i = 0; i < N; i++){
+		if (c1 < 4) {
+			c1++;
+			for (int j = 0; j < M; j++) {
+				if (c2 < 4) {
+					B[tmp] = A[i][j];
+					tmp++;
+					c2++;
+				}
+				else break;
+			}
+		}
+		else break;
+	}
+	for (int t = 0; t < tmp; t++) {
+		if (B[t] < min) min = B[t];
+	}
+	return min;
+}
